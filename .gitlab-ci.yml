@@ -30,7 +30,7 @@ run tests:
     - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - yum -y install gcc git
     - source /etc/profile.d/conda.sh
-    - conda install -c conda-forge python=3.10
+    - conda install -c conda-forge python=3.12
     - pip install .
     - pip install pytest
     - pytest .
