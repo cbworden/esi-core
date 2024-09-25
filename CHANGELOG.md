@@ -1,4 +1,6 @@
 ## main
+ - Fix bug where "np" was used as a variable and an import in konno_ohmachi.
+ - Allow python versions >3.9.
  - Change path in setup.py so shakemap modules start with esi_core.
  - Updates project construction to use pyproject.toml instead of setup.cfg
  - Remove .c files.
