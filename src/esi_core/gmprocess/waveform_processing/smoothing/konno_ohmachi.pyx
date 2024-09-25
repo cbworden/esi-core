@@ -7,7 +7,7 @@ cimport numpy as np
 cimport cython
 
 cdef extern from "smoothing.h":
-    void konno_ohmachi_c(double *spec, double *freqs, int npt,
+    void konno_ohmachi_c(double *spec, double *freqs, int npoints,
                          double *ko_freqs, double *ko_smooth, int nko,
                          double bandwidth);
 
@@ -19,10 +19,10 @@ def konno_ohmachi_smooth(np.ndarray[double, ndim=1, mode='c']spec,
                          bandwidth):
     """
     """
-    cdef int npt = len(spec)
+    cdef int npoints = len(spec)
     cdef int nko = len(ko_freqs)
 
-    konno_ohmachi_c(<double *>spec.data, <double *>freqs.data, npt,
+    konno_ohmachi_c(<double *>spec.data, <double *>freqs.data, npoints,
                     <double *>ko_freqs.data, <double *>spec_smooth.data,
                     nko, bandwidth)
     return
