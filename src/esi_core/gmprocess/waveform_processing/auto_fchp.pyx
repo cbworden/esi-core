@@ -65,90 +65,90 @@ cdef double get_residual(double[:] time, double[:] disp, double target, int poly
 
 def get_fchp(**kwargs):
     options = [
-        "dt", "acc", "target", "tol", "poly_order", "maxiter", "fchp_min", 
+        "dt", "acc", "target", "tol", "poly_order", "maxiter", "fchp_min",
         "fchp_max", "filter_order", "tukey_alpha", "filter_type"]
-    
+
     for key, value in kwargs.items():
         if key not in options:
             print(f"{key} is not a valid argument. Please see documentation. Using "
                   "default values for all parameters that are not specified.")
-    
+
     if "dt" in kwargs :
         dt = kwargs["dt"]
     else:
         print("You must specify dt")
         return
-    
+
     if "acc" in kwargs:
         acc = np.asarray(kwargs["acc"], dtype="float64")
     else:
         print("You must specify acc")
         return
-    
+
     if "target" in kwargs:
         target = kwargs["target"]
     else:
         target = 0.02
-    
+
     if "tol" in kwargs:
         tol = kwargs["tol"]
     else:
         tol = 0.001
-    
+
     if "poly_order" in kwargs:
         poly_order = kwargs["poly_order"]
     else:
         poly_order = 6
-    
+
     if "maxiter" in kwargs:
         maxiter = kwargs["maxiter"]
     else:
         maxiter = 30
-    
+
     if "fchp_min" in kwargs:
         minfc = kwargs["fchp_min"]
     else:
         minfc = 0.001
-    
+
     if "fchp_max" in kwargs:
         maxfc = kwargs["fchp_max"]
     else:
         maxfc = 0.5
-        
+
     if "filter_order" in kwargs:
         filter_order = kwargs["filter_order"]
     else:
         filter_order = 5.0
-        
+
     if "tukey_alpha" in kwargs:
         tukey_alpha = kwargs["tukey_alpha"]
     else:
         tukey_alpha = 0.05
-    
+
     if "filter_type" in kwargs:
         filter_type = kwargs["filter_type"]
     else:
         filter_type = 0
-        
+
     # subtract mean and apply Tukey window
     cdef int i
     cdef double meanacc = 0.0
     for i in range(len(acc)):
         meanacc += acc[i]/len(acc)
-    cdef double[:] window = signal.tukey(len(acc), alpha=tukey_alpha)
+    cdef double[:] window = signal.windows.tukey(len(acc), alpha=tukey_alpha)
     for i in range(len(acc)):
         acc[i] = window[i] * (acc[i] - meanacc)
     cdef double[:] time = np.linspace(0, dt * len(acc), len(acc))
     cdef complex[:] Facc = np.fft.rfft(acc)
     cdef double[:] freq = np.fft.rfftfreq(len(acc), dt)
-    
+
     cdef double fc0 = minfc
     cdef complex[:] FiltFacc = filtered_Facc(Facc, freq, fc0, filter_order)
     cdef double[:] disp = get_disp(freq, FiltFacc)
     cdef double R0 = get_residual(time, disp, target, poly_order)
     if(np.sign(R0) < 0):
         return fc0
-    
+
     cdef double fc2 = maxfc
     if filter_type == 1:
         FiltFacc = filtered_Facc(Facc, freq, maxfc, filter_order)
@@ -165,7 +165,7 @@ def get_fchp(**kwargs):
     cdef double R2 = get_residual(time, disp, target, poly_order)
     if(np.sign(R2) > 0):
         return fc2
-    
+
     cdef double fc1, R1, fc3, R3
     for i in range(maxiter):
         fc1 = np.exp(0.5 * (np.log(fc0) + np.log(fc2)))
@@ -182,7 +182,7 @@ def get_fchp(**kwargs):
             FiltFacc = np.fft.rfft(tr.data)
         disp = get_disp(freq, FiltFacc)
         R1 = get_residual(time, disp, target, poly_order)
-        fc3 = (np.exp(np.log(fc1) + (np.log(fc1) - np.log(fc0)) * np.sign(R0) * R1 / 
+        fc3 = (np.exp(np.log(fc1) + (np.log(fc1) - np.log(fc0)) * np.sign(R0) * R1 /
                (np.sqrt(R1*R1 - R0*R2))))
         if filter_type==1:
             FiltFacc = filtered_Facc(Facc, freq, fc3, filter_order)
