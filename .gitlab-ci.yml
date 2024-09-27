@@ -45,7 +45,7 @@ run tests:
     - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - yum -y install gcc git
     - source /etc/profile.d/conda.sh
-    - conda install -c conda-forge python=3.12
+    - conda install -c conda-forge python=3.12 pip
     - pip install .
     - pip install pytest
     - pytest .
@@ -56,6 +56,11 @@ Deploy to TestPyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
+    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
+    - yum -y install gcc git
+    - source /etc/profile.d/conda.sh
+    - conda install -c conda-forge python=3.12 pip
     - pip install -e .[dev,test,build,all]
 
   extends: .deploy-to-testpypi-by-tag-multi-arch
@@ -68,6 +73,11 @@ Deploy to PyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
+    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
+    - yum -y install gcc git
+    - source /etc/profile.d/conda.sh
+    - conda install -c conda-forge python=3.12 pip
     - pip install -e .[dev,test,build,all]
 
   extends: .deploy-to-pypi-by-tag-multi-arch
