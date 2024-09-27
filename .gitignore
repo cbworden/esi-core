@@ -12,6 +12,7 @@ __pycache__/
 *_cibw.yml
 *_gmprocess.yml
 htmlcov
+wheelhouse
 **/*.egg-info/
 .pytest_cache
 **/*.so
@@ -27,4 +28,5 @@ src/esi_core/gmprocess/metrics/oscillators.c
 src/esi_core/shakemap/covariance_matrix.c
 src/esi_core/shakemap/geodetic_distances.c
 src/esi_core/shakemap/pcontour.c
+src/esi_core/shakemap/clib.c
 
