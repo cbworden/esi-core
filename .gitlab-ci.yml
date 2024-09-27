@@ -41,6 +41,7 @@ run tests:
     - *fork
     - *upstream
   script:
+    - conda update -n base -c defaults conda
     - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - yum -y install gcc git
@@ -56,6 +57,7 @@ Deploy to TestPyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    - conda update -n base -c defaults conda
     - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - yum -y install gcc git
@@ -73,6 +75,7 @@ Deploy to PyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    - conda update -n base -c defaults conda
     - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - yum -y install gcc git
