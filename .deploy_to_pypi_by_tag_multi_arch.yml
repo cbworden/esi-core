@@ -1,0 +1,24 @@
+# --------------------------------------------------
+# Deploy the pip package to PyPi
+# --------------------------------------------------
+
+.deploy-to-pypi-by-tag-multi-arch:
+  cache: {}
+  # extends:
+  #   - .deploy_tag
+
+  script:
+    - pip install .[build]
+    - pip install cibuildwheel
+      pip install --upgrade twine
+    - python -m cibuildwheel -output-dir wheelhouse .
+    - |
+      if [ $? -eq 0 ]; then
+        echo "Wheel building has succeeded, uploading to PyPi ..."
+        python -m twine upload --verbose dist/*
+        python -m twine upload --skip-exsisting --non-interactive --verbose -r pypi -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
+      else
+        echo "Wheel building has failed, wheel will not be uploaded to PyPi ..."
+      fi
+  stage: deploy
+

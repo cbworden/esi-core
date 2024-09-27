@@ -1,7 +1,21 @@
+include:
+  - project: "ghsc/esi/esi-templates"
+    ref: main
+    file:
+      - ".setup_conda.yml"
+      - ".rules.yml"
+      - ".default_rules.yml"
+      - ".deploy_rules.yml"
+      - ".run_tests.yml"
+      - ".deploy_to_testpypi_by_tag.yml"
+      - ".deploy_to_pypi_by_tag.yml"
+  - local: ".deploy_to_testpypi_by_tag_multi_arch.yml"
+  - local: ".deploy_to_pypi_by_tag_multi_arch.yml"
+
 default:
   image: ${DEVOPS_REGISTRY}usgs/conda:latest
   tags:
-    - development
+    - build
 
 # repository rules
 .fork: &fork
@@ -20,6 +34,7 @@ default:
 
 stages:
   - test
+  - deploy
 
 run tests:
   rules:
@@ -36,3 +51,25 @@ run tests:
     - pytest .
   stage: test
 
+Deploy to TestPyPi:
+  rules:
+    - !reference [.deploy, rules]
+
+  before_script:
+    - pip install -e .[dev,test,build,all]
+
+  extends: .deploy-to-testpypi-by-tag-multi-arch
+
+  stage: deploy
+Deploy to PyPi:
+  needs:
+    - job: Deploy to TestPyPi
+  rules:
+    - !reference [.deploy, rules]
+
+  before_script:
+    - pip install -e .[dev,test,build,all]
+
+  extends: .deploy-to-pypi-by-tag-multi-arch
+
+  stage: deploy

@@ -56,7 +56,7 @@ build = [
 ]
 
 [tool.cibuildwheel]
-skip = "cp36-* cp37-* pp* *-manylinux_i686 *_ppc64le *_s390x *-musllinux*"
+skip = "cp36-* cp37-* cp38-* cp39-* cp310-* cp311-* cp313-* pp* *-manylinux_i686 *_ppc64le *_s390x *-musllinux*"
 build-verbosity = "3"
 
 [tool.cibuildwheel.macos]
