@@ -1,0 +1,16 @@
+- You need to be on a mac to follow these instructions.
+- First get python for your local Mac system:
+curl https://www.python.org/ftp/python/3.12.6/python-3.12.6-macos11.pkg > ~/Desktop/python-3.12.6-macos11.pkg
+- Then, tag your release and push it upstream as in a normal release. That will
+  build the linux versions and deploy to pypi.
+- Get cibuildwheel:
+pip install cibuildwheel
+- Also install twine:
+pip install twine
+- Then build the wheels:
+python -m cibuildwheel --output-dir wheelhouse .
+- Optionally deploy to testpypi:
+python -m twine upload --skip-exsisting --verbose -r testpypi wheelhouse/*
+- Deploy to pypi:
+python -m twine upload --skip-exsisting --verbose -r pypi wheelhouse/*
+
