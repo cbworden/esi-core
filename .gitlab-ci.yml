@@ -20,11 +20,6 @@ default:
     - name: docker:dind
       entrypoint: ["env", "-u", "DOCKER_HOST"]
       command: ["dockerd-entrypoint.sh"]
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-    # See https://github.com/docker-library/docker/pull/166
-    DOCKER_TLS_CERTDIR: ""
 
 # repository rules
 .fork: &fork
@@ -50,6 +45,11 @@ run tests:
     - *fork
     - *upstream
   script:
+    variables:
+      DOCKER_HOST: tcp://docker:2375/
+      DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
@@ -68,6 +68,11 @@ Deploy to TestPyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    variables:
+      DOCKER_HOST: tcp://docker:2375/
+      DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
@@ -88,6 +93,11 @@ Deploy to PyPi:
     - !reference [.deploy, rules]
 
   before_script:
+    variables:
+      DOCKER_HOST: tcp://docker:2375/
+      DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
