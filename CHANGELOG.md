@@ -1,4 +1,8 @@
 ## main
+
+## 1.2.1 / 2024-09-28
+
+ - Refactor .gitlab-ci.yml to build linux wheelhouse and upload to pypi.
  - Change .gitlab-ci.yml to use python 3.12.
  - Fix bug where "np" was used as a variable and an import in konno_ohmachi.
  - Allow python versions >3.9.
