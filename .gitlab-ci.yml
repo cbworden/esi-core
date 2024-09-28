@@ -63,28 +63,26 @@ run tests:
     DOCKER_TLS_CERTDIR: ""
   stage: test
 
-Deploy to TestPyPi:
-  rules:
-    - !reference [.deploy, rules]
+  #Deploy to TestPyPi:
+  #  rules:
+  #    - !reference [.deploy, rules]
+  #
+  #  before_script:
+  #    - curl -sSL https://get.docker.com/ | sh
+  #    - apt-get -y install gcc git
+  #    - curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh
+  #    - bash miniconda.sh -f -b -p miniconda
+  #    - . miniconda/etc/profile.d/conda.sh
+  #    - conda install pip
+  #    - pip install -e .[dev,test,build,all]
 
-  before_script:
-    #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
-    #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
-    - curl -sSL https://get.docker.com/ | sh
-    - apt-get -y install gcc git
-    - curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh
-    - bash miniconda.sh -f -b -p miniconda
-    - . miniconda/etc/profile.d/conda.sh
-    - conda install pip
-    - pip install -e .[dev,test,build,all]
-
-  extends: .deploy-to-testpypi-by-tag-multi-arch
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
+  #  extends: .deploy-to-testpypi-by-tag-multi-arch
+  #  variables:
+  #    DOCKER_HOST: tcp://docker:2375/
+  #    DOCKER_DRIVER: overlay2
     # See https://github.com/docker-library/docker/pull/166
-    DOCKER_TLS_CERTDIR: ""
-  stage: deploy
+    #    DOCKER_TLS_CERTDIR: ""
+    #  stage: deploy
 
 Deploy to PyPi:
   needs:
