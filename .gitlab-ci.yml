@@ -45,11 +45,6 @@ run tests:
     - *fork
     - *upstream
   script:
-    variables:
-      DOCKER_HOST: tcp://docker:2375/
-      DOCKER_DRIVER: overlay2
-    # See https://github.com/docker-library/docker/pull/166
-      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
@@ -61,6 +56,11 @@ run tests:
     - pip install .
     - pip install pytest
     - pytest .
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+    DOCKER_TLS_CERTDIR: ""
   stage: test
 
 Deploy to TestPyPi:
@@ -68,11 +68,6 @@ Deploy to TestPyPi:
     - !reference [.deploy, rules]
 
   before_script:
-    variables:
-      DOCKER_HOST: tcp://docker:2375/
-      DOCKER_DRIVER: overlay2
-    # See https://github.com/docker-library/docker/pull/166
-      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
@@ -84,8 +79,13 @@ Deploy to TestPyPi:
     - pip install -e .[dev,test,build,all]
 
   extends: .deploy-to-testpypi-by-tag-multi-arch
-
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+    DOCKER_TLS_CERTDIR: ""
   stage: deploy
+
 Deploy to PyPi:
   needs:
     - job: Deploy to TestPyPi
@@ -93,11 +93,6 @@ Deploy to PyPi:
     - !reference [.deploy, rules]
 
   before_script:
-    variables:
-      DOCKER_HOST: tcp://docker:2375/
-      DOCKER_DRIVER: overlay2
-    # See https://github.com/docker-library/docker/pull/166
-      DOCKER_TLS_CERTDIR: ""
     #    - sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
     #    - sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
     - curl -sSL https://get.docker.com/ | sh
@@ -109,5 +104,9 @@ Deploy to PyPi:
     - pip install -e .[dev,test,build,all]
 
   extends: .deploy-to-pypi-by-tag-multi-arch
-
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    # See https://github.com/docker-library/docker/pull/166
+    DOCKER_TLS_CERTDIR: ""
   stage: deploy
