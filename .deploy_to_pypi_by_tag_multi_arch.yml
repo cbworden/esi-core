@@ -15,7 +15,8 @@
     - |
       if [ $? -eq 0 ]; then
         echo "Wheel building has succeeded, uploading to PyPi ..."
-        python -m twine upload --skip-existing --non-interactive --verbose -r pypi -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
+        echo ${TWINE_USERNAME}
+        python -m twine upload --skip-existing --non-interactive --verbose -r pypi -u ${TWINE_USERNAME} -p ${PYPI_UPLOAD_TOKEN} wheelhouse/*
       else
         echo "Wheel building has failed, wheel will not be uploaded to PyPi ..."
       fi
