@@ -1,110 +1,146 @@
 [
-  {
-    "name": "esi-core",
-    "organization": "U.S. Geological Survey",
-    "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
-    "version": "1.2.0",
-    "status": "Development",
-    "permissions": {
-      "usageType": "openSource",
-      "licenses": [
-        {
-          "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/LICENSE.md"
+    {
+        "name": "esi-core",
+        "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
+        "version": "v1.2.1",
+        "status": "Development",
+        "organization": "U.S. Geological Survey",
+        "vcs": "git",
+        "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
+        "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
+        "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.2.0/esi-core-1.2.0.zip",
+        "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/DISCLAIMER.md",
+        "permissions": {
+            "usageType": "openSource",
+            "licenses": [
+                {
+                    "name": "Public Domain, CC0-1.0",
+                    "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/LICENSE.md"
+                }
+            ]
+        },
+        "laborHours": 1,
+        "languages": [
+            "python"
+        ],
+        "tags": [
+            "earthquake",
+            "utilities"
+        ],
+        "contact": {
+            "name": "Eric Thompson",
+            "email": "emthompson@usgs.gov"
+        },
+        "date": {
+            "metadataLastUpdated": "2024-09-28"
         }
-      ]
     },
-    "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
-    "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.2.0/esi-core-1.2.0.zip",
-    "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/DISCLAIMER.md",
-    "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
-    "vcs": "git",
-    "laborHours": 1,
-    "tags": [
-      "earthquake",
-      "utilities"
-    ],
-    "languages": [
-      "python"
-    ],
-    "contact": {
-      "name": "Eric Thompson",
-      "email": "emthompson@usgs.gov"
-    },
-    "date": {
-      "metadataLastUpdated": "2023-06-06"
-    }
-  },
-  {
-    "name": "esi-core",
-    "organization": "U.S. Geological Survey",
-    "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
-    "version": "1.0.1",
-    "status": "Development",
-    "permissions": {
-      "usageType": "openSource",
-      "licenses": [
-        {
-          "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.1/LICENSE.md"
+    {
+        "name": "esi-core",
+        "organization": "U.S. Geological Survey",
+        "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
+        "version": "1.2.0",
+        "status": "Development",
+        "permissions": {
+            "usageType": "openSource",
+            "licenses": [
+                {
+                    "name": "Public Domain, CC0-1.0",
+                    "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/LICENSE.md"
+                }
+            ]
+        },
+        "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
+        "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.2.0/esi-core-1.2.0.zip",
+        "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.2.0/DISCLAIMER.md",
+        "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
+        "vcs": "git",
+        "laborHours": 1,
+        "tags": [
+            "earthquake",
+            "utilities"
+        ],
+        "languages": [
+            "python"
+        ],
+        "contact": {
+            "name": "Eric Thompson",
+            "email": "emthompson@usgs.gov"
+        },
+        "date": {
+            "metadataLastUpdated": "2023-06-06"
         }
-      ]
     },
-    "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
-    "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.0.1/esi-core-1.0.1.zip",
-    "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.1/DISCLAIMER.md",
-    "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
-    "vcs": "git",
-    "laborHours": 1,
-    "tags": [
-      "earthquake",
-      "utilities"
-    ],
-    "languages": [
-      "python"
-    ],
-    "contact": {
-      "name": "Eric Thompson",
-      "email": "emthompson@usgs.gov"
-    },
-    "date": {
-      "metadataLastUpdated": "2022-09-27"
-    }
-  },
-  {
-    "name": "esi-core",
-    "organization": "U.S. Geological Survey",
-    "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
-    "version": "1.0.0",
-    "status": "Development",
-    "permissions": {
-      "usageType": "openSource",
-      "licenses": [
-        {
-          "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.0/LICENSE.md"
+    {
+        "name": "esi-core",
+        "organization": "U.S. Geological Survey",
+        "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
+        "version": "1.0.1",
+        "status": "Development",
+        "permissions": {
+            "usageType": "openSource",
+            "licenses": [
+                {
+                    "name": "Public Domain, CC0-1.0",
+                    "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.1/LICENSE.md"
+                }
+            ]
+        },
+        "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
+        "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.0.1/esi-core-1.0.1.zip",
+        "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.1/DISCLAIMER.md",
+        "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
+        "vcs": "git",
+        "laborHours": 1,
+        "tags": [
+            "earthquake",
+            "utilities"
+        ],
+        "languages": [
+            "python"
+        ],
+        "contact": {
+            "name": "Eric Thompson",
+            "email": "emthompson@usgs.gov"
+        },
+        "date": {
+            "metadataLastUpdated": "2022-09-27"
         }
-      ]
     },
-    "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
-    "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.0.0/esi-core-1.0.0.zip",
-    "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.0/DISCLAIMER.md",
-    "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
-    "vcs": "git",
-    "laborHours": 1,
-    "tags": [
-      "earthquake",
-      "utilities"
-    ],
-    "languages": [
-      "python"
-    ],
-    "contact": {
-      "name": "Eric Thompson",
-      "email": "emthompson@usgs.gov"
-    },
-    "date": {
-      "metadataLastUpdated": "2022-08-19"
+    {
+        "name": "esi-core",
+        "organization": "U.S. Geological Survey",
+        "description": "https://code.usgs.gov/ghsc/esi/esi-core.",
+        "version": "1.0.0",
+        "status": "Development",
+        "permissions": {
+            "usageType": "openSource",
+            "licenses": [
+                {
+                    "name": "Public Domain, CC0-1.0",
+                    "URL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.0/LICENSE.md"
+                }
+            ]
+        },
+        "homepageURL": "https://code.usgs.gov/ghsc/esi/esi-core",
+        "downloadURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/archive/1.0.0/esi-core-1.0.0.zip",
+        "disclaimerURL": "https://code.usgs.gov/ghsc/esi/esi-core/-/raw/1.0.0/DISCLAIMER.md",
+        "repositoryURL": "https://code.usgs.gov/ghsc/esi/esi-core.git",
+        "vcs": "git",
+        "laborHours": 1,
+        "tags": [
+            "earthquake",
+            "utilities"
+        ],
+        "languages": [
+            "python"
+        ],
+        "contact": {
+            "name": "Eric Thompson",
+            "email": "emthompson@usgs.gov"
+        },
+        "date": {
+            "metadataLastUpdated": "2022-08-19"
+        }
     }
-  }
 ]
