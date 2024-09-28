@@ -72,7 +72,6 @@ run tests:
   #    - bash miniconda.sh -f -b -p miniconda
   #    - . miniconda/etc/profile.d/conda.sh
   #    - conda install pip
-  #    - pip install -e .[dev,test,build,all]
 
   #  extends: .deploy-to-testpypi-by-tag-multi-arch
   #  variables:
@@ -95,7 +94,6 @@ Deploy to PyPi:
     - bash miniconda.sh -f -b -p miniconda
     - . miniconda/etc/profile.d/conda.sh
     - conda install pip
-    - pip install -e .[dev,test,build,all]
 
   extends: .deploy-to-pypi-by-tag-multi-arch
   variables:

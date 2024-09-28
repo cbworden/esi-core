@@ -7,9 +7,8 @@
   # extends:
   #   - .deploy_tag
   script:
-    - pip install .[build]
     - pip install cibuildwheel
-    - pip install --upgrade twine
+    - pip install twine
     - python -m cibuildwheel --output-dir wheelhouse .
     - |
       if [ $? -eq 0 ]; then
