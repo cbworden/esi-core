@@ -11,8 +11,9 @@ pip install cibuildwheel
 pip install twine
 - Then build the wheels:
 python -m cibuildwheel --output-dir wheelhouse .
-- Optionally deploy to testpypi:
-python -m twine upload --skip-exsisting --verbose -r testpypi wheelhouse/*
+# - Optionally deploy to testpypi:
+# python -m twine upload --skip-existing --verbose -r testpypi wheelhouse/*
 - Deploy to pypi:
-python -m twine upload --skip-exsisting --verbose -r pypi wheelhouse/*
+python -m twine upload --skip-existing --verbose -r pypi -u __token__ -p
+<pypi_access_token> wheelhouse/*
 
