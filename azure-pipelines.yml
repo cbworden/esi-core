@@ -23,6 +23,10 @@ jobs:
         python.version: '3.9'
       Python310:
         python.version: '3.10'
+      Python311:
+        python.version: '3.11'
+      Python312:
+        python.version: '3.12'
   steps:
     - task: UsePythonVersion@0
       inputs:
@@ -30,7 +34,7 @@ jobs:
     - bash: |
         set -o errexit
         python3 -m pip install --upgrade pip
-        pip3 install cibuildwheel==2.9.0
+        pip3 install cibuildwheel==2.21.3
       displayName: Install dependencies
     - bash: cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
@@ -38,12 +42,13 @@ jobs:
       displayName: 'Install Twine'
 
     # Download a secure file to the agent machine
-    - task: DownloadSecureFile@1
-      name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
-      inputs:
-        secureFile: .pypirc
+    #- task: DownloadSecureFile@1
+    #  name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+    #  inputs:
+    #    secureFile: .pypirc
       
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+      #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
 
 - job: macos
@@ -57,6 +62,10 @@ jobs:
         python.version: '3.9'
       Python310:
         python.version: '3.10'
+      Python311:
+        python.version: '3.11'
+      Python312:
+        python.version: '3.12'
   steps:
     - task: UsePythonVersion@0
       inputs:
@@ -64,7 +73,7 @@ jobs:
     - bash: |
         set -o errexit
         python3 -m pip install --upgrade pip
-        python3 -m pip install cibuildwheel==2.9.0
+        python3 -m pip install cibuildwheel==2.21.3
       displayName: Install dependencies
     - bash: cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
@@ -73,12 +82,13 @@ jobs:
       displayName: 'Install Twine'
 
     # Download a secure file to the agent machine
-    - task: DownloadSecureFile@1
-      name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
-      inputs:
-        secureFile: .pypirc
+    #- task: DownloadSecureFile@1
+      #name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+      #inputs:
+        #secureFile: .pypirc
       
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+        #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
 
 - job: windows
@@ -92,6 +102,10 @@ jobs:
         python.version: '3.9'
       Python310:
         python.version: '3.10'
+      Python311:
+        python.version: '3.11'
+      Python312:
+        python.version: '3.12'
   steps:
     - task: UsePythonVersion@0
       inputs:
@@ -99,7 +113,7 @@ jobs:
     - bash: |
         set -o errexit
         python -m pip install --upgrade pip
-        pip install cibuildwheel==2.9.0
+        pip install cibuildwheel==2.21.3
       displayName: Install dependencies
     - bash: cibuildwheel --output-dir wheelhouse .
       displayName: Build wheels
@@ -107,10 +121,11 @@ jobs:
       displayName: 'Install Twine'
 
     # Download a secure file to the agent machine
-    - task: DownloadSecureFile@1
-      name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
-      inputs:
-        secureFile: .pypirc
+    #- task: DownloadSecureFile@1
+      #name: securePyPiRC # The name with which to reference the secure file's path on the agent, like $(mySecureFile.secureFilePath)
+      #inputs:
+        #secureFile: .pypirc
       
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+        #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
