@@ -1,4 +1,7 @@
 ## main
+
+## 1.2.2 / 2024-10-28
+
  - Mods to azure_pipelines.yml.
 
 ## 1.2.1 / 2024-09-28
