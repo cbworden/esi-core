@@ -1,4 +1,5 @@
 ## main
+ - Using matrix builds in .gitlab-ci.yml for multiple python versions.
  - Mods to azure_pipelines.yml.
 
 ## 1.2.1 / 2024-09-28
