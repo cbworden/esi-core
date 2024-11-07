@@ -13,7 +13,7 @@ include:
   - local: ".deploy_to_pypi_by_tag_multi_arch.yml"
 
 default:
-  image: code.usgs.gov:5001/devops/images/usgs/python:3.12-build
+  # image: code.usgs.gov:5001/devops/images/usgs/python:3.12-build
   tags:
     - build
   services:
@@ -36,11 +36,19 @@ default:
   variables:
     ENVIRONMENT: staging
 
+.parallel:
+  parallel:
+    matrix:
+      - PYVER: [3.8-build, 3.9-build, 3.10-build, 3.11-build, 3.12-build]
+        DIST: [linux]
+
+
 stages:
   - test
   - deploy
 
 run tests:
+  image: code.usgs.gov:5001/devops/images/usgs/python:$PYVER
   rules:
     - *fork
     - *upstream
@@ -59,9 +67,11 @@ run tests:
     DOCKER_DRIVER: overlay2
     # See https://github.com/docker-library/docker/pull/166
     DOCKER_TLS_CERTDIR: ""
+  parallel: !reference [.parallel,parallel]
   stage: test
 
   #Deploy to TestPyPi:
+  #  image: code.usgs.gov:5001/devops/images/usgs/python:$PYVER
   #  rules:
   #    - !reference [.deploy, rules]
   #
@@ -79,11 +89,13 @@ run tests:
   #    DOCKER_DRIVER: overlay2
     # See https://github.com/docker-library/docker/pull/166
     #    DOCKER_TLS_CERTDIR: ""
+    # parallel: !reference [.parallel,parallel]
     #  stage: deploy
 
 Deploy to PyPi:
   #  needs:
   #    - job: Deploy to TestPyPi
+  image: code.usgs.gov:5001/devops/images/usgs/python:$PYVER
   rules:
     - !reference [.deploy, rules]
 
@@ -101,4 +113,5 @@ Deploy to PyPi:
     DOCKER_DRIVER: overlay2
     # See https://github.com/docker-library/docker/pull/166
     DOCKER_TLS_CERTDIR: ""
+  parallel: !reference [.parallel,parallel]
   stage: deploy
