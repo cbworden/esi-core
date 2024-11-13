@@ -48,8 +48,11 @@ jobs:
     #    secureFile: .pypirc
       
       #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
+      env:
+        TWINE_USER: $(TWINE_USERNAME)
+        PYPI_PASSWD: $(PYPI_UPLOAD_TOKEN)
 
 - job: macos
   timeoutInMinutes: '120'
@@ -88,8 +91,11 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
+      env:
+        TWINE_USER: $(TWINE_USERNAME)
+        PYPI_PASSWD: $(PYPI_UPLOAD_TOKEN)
 
 - job: windows
   timeoutInMinutes: '120'
@@ -127,5 +133,8 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
+      env:
+        TWINE_USER: $(TWINE_USERNAME)
+        PYPI_PASSWD: $(PYPI_UPLOAD_TOKEN)
