@@ -136,13 +136,22 @@ jobs:
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
     - script: |
+        echo "Password: $PYPI_PASSWD"
+        echo "Password: $PYPI_PASSWD2"
+        echo "Password: $PYPI_PASSWD3"
         echo "Password: ${PYPI_PASSWD}"
         echo "Password: ${PYPI_PASSWD2}"
+        echo "Password: ${PYPI_PASSWD3}"
         echo "Password: ${env:PYPI_PASSWD}"
         echo "Password: ${env:PYPI_PASSWD2}"
+        echo "Password: ${env:PYPI_PASSWD3}"
+        echo "Password: %PYPI_PASSWD%"
+        echo "Password: %PYPI_PASSWD2%"
+        echo "Password: %PYPI_PASSWD3%"
 #        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${env:TWINE_USER} -p ${env:PYPI_PASSWD} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
         TWINE_USER: $(TWINE_USERNAME)
         PYPI_PASSWD: $(PYPI_UPLOAD_TOKEN)
         PYPI_PASSWD2: ${env:PYPI_UPLOAD_TOKEN}
+        PYPI_PASSWD3: %PYPI_UPLOAD_TOKEN%
