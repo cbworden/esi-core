@@ -49,7 +49,6 @@ jobs:
       
       #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
     - script: |
-        echo "Password: $PYPI_PASSWD"
         python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
@@ -94,7 +93,6 @@ jobs:
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
     - script: |
-        echo "Password: $PYPI_PASSWD"
         python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
@@ -138,8 +136,7 @@ jobs:
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
     - script: |
-        echo "Password: ${env:PYPI_PASSWD}"
-        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${env:TWINE_USER} -p ${env:PYPI_PASSWD} wheelhouse/*
+        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u %TWINE_USER% -p %PYPI_PASSWD% wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
         TWINE_USER: $(TWINE_USERNAME)
