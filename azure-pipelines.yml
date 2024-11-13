@@ -48,7 +48,7 @@ jobs:
     #    secureFile: .pypirc
       
       #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
 
 - job: macos
@@ -88,7 +88,7 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
 
 - job: windows
@@ -127,5 +127,5 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${TWINE_USERNAME} -p ${TESTPYPI_UPLOAD_TOKEN} wheelhouse/*
+    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u ${{ secrets.TWINE_USERNAME }} -p ${{ secrets.TESTPYPI_UPLOAD_TOKEN }} wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
