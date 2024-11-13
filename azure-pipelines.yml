@@ -17,14 +17,14 @@ jobs:
   pool: {vmImage: 'Ubuntu-latest'}
   strategy:
     matrix:
-      Python38:
-        python.version: '3.8'
-      Python39:
-        python.version: '3.9'
-      Python310:
-        python.version: '3.10'
-      Python311:
-        python.version: '3.11'
+      # Python38:
+      #   python.version: '3.8'
+      # Python39:
+      #   python.version: '3.9'
+      # Python310:
+      #   python.version: '3.10'
+      # Python311:
+      #   python.version: '3.11'
       Python312:
         python.version: '3.12'
   steps:
@@ -48,7 +48,9 @@ jobs:
     #    secureFile: .pypirc
       
       #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
+    - script: |
+        echo "Password: $PYPI_PASSWD"
+        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
         TWINE_USER: $(TWINE_USERNAME)
@@ -59,14 +61,14 @@ jobs:
   pool: {vmImage: 'macOS-latest'}
   strategy:
     matrix:
-      Python38:
-        python.version: '3.8'
-      Python39:
-        python.version: '3.9'
-      Python310:
-        python.version: '3.10'
-      Python311:
-        python.version: '3.11'
+      # Python38:
+      #   python.version: '3.8'
+      # Python39:
+      #   python.version: '3.9'
+      # Python310:
+      #   python.version: '3.10'
+      # Python311:
+      #   python.version: '3.11'
       Python312:
         python.version: '3.12'
   steps:
@@ -91,7 +93,9 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
+    - script: |
+        echo "Password: $PYPI_PASSWD"
+        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
         TWINE_USER: $(TWINE_USERNAME)
@@ -102,14 +106,14 @@ jobs:
   pool: {vmImage: 'windows-latest'}
   strategy:
     matrix:
-      Python38:
-        python.version: '3.8'
-      Python39:
-        python.version: '3.9'
-      Python310:
-        python.version: '3.10'
-      Python311:
-        python.version: '3.11'
+      # Python38:
+      #   python.version: '3.8'
+      # Python39:
+      #   python.version: '3.9'
+      # Python310:
+      #   python.version: '3.10'
+      # Python311:
+      #   python.version: '3.11'
       Python312:
         python.version: '3.12'
   steps:
@@ -133,7 +137,9 @@ jobs:
         #secureFile: .pypirc
       
         #- script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose --config-file $(securePyPiRC.secureFilePath) wheelhouse/*
-    - script: python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
+    - script: |
+        echo "Password: $PYPI_PASSWD"
+        python -m twine upload --skip-existing --non-interactive -r pypi --verbose -u $TWINE_USER -p $PYPI_PASSWD wheelhouse/*
       displayName: 'Publish to PyPi through Twine'
       env:
         TWINE_USER: $(TWINE_USERNAME)
